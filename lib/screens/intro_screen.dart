@@ -12,6 +12,31 @@ class _IntroScreenState extends State<IntroScreen> {
   final PageController _pageController = PageController(initialPage: 0);
   int currentIndex = 0;
 
+  Widget indicator(bool isActive) {
+    return AnimatedContainer(
+      duration: const Duration(milliseconds: 100),
+      height: 10,
+      width: isActive ? 20 : 9,
+      margin: const EdgeInsets.only(right: 5),
+      decoration: BoxDecoration(
+        color: Constants.primaryColor,
+        borderRadius: BorderRadius.circular(5),
+      ),
+    );
+  }
+
+  List<Widget> _buildIndicator() {
+    List<Widget> indicators = [];
+    for (var i = 0; i < 3; i++) {
+      if (currentIndex == i) {
+        indicators.add(indicator(true));
+      } else {
+        indicators.add(indicator(false));
+      }
+    }
+    return indicators;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,6 +94,43 @@ class _IntroScreenState extends State<IntroScreen> {
               ),
             ],
           ),
+          Positioned(
+            bottom: 80,
+            left: 30,
+            child: Row(
+              children: _buildIndicator(),
+            ),
+          ),
+          Positioned(
+            bottom: 60,
+            right: 30,
+            child: Container(
+              padding: const EdgeInsets.all(4),
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Constants.primaryColor,
+              ),
+              child: IconButton(
+                onPressed: () {
+                  setState(() {
+                    if (currentIndex < 2) {
+                      currentIndex++;
+                      if (currentIndex < 3) {
+                        _pageController.nextPage(
+                          duration: const Duration(milliseconds: 500),
+                          curve: Curves.ease,
+                        );
+                      }
+                    } else {}
+                  });
+                },
+                icon: const Icon(
+                  Icons.arrow_forward_ios,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );
