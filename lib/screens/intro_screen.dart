@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_shop/constants/constants.dart';
+import 'package:plant_shop/screens/root_screen.dart';
 
 class IntroScreen extends StatefulWidget {
   const IntroScreen({super.key});
@@ -113,17 +114,26 @@ class _IntroScreenState extends State<IntroScreen> {
               ),
               child: IconButton(
                 onPressed: () {
-                  setState(() {
-                    if (currentIndex < 2) {
-                      currentIndex++;
-                      if (currentIndex < 3) {
-                        _pageController.nextPage(
-                          duration: const Duration(milliseconds: 500),
-                          curve: Curves.ease,
+                  setState(
+                    () {
+                      if (currentIndex < 2) {
+                        currentIndex++;
+                        if (currentIndex < 3) {
+                          _pageController.nextPage(
+                            duration: const Duration(milliseconds: 500),
+                            curve: Curves.ease,
+                          );
+                        }
+                      } else {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const RootScreen(),
+                          ),
                         );
                       }
-                    } else {}
-                  });
+                    },
+                  );
                 },
                 icon: const Icon(
                   Icons.arrow_forward_ios,
