@@ -24,7 +24,7 @@ class _RootScreenState extends State<RootScreen> {
     Icons.home,
     Icons.favorite,
     Icons.shopping_cart,
-    Icons.account_box
+    Icons.person
   ];
 
   List<String> appBarTitle = [
@@ -62,6 +62,7 @@ class _RootScreenState extends State<RootScreen> {
           ),
         ),
       ),
+      body: ,
     );
   }
 }
