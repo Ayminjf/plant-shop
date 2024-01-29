@@ -1,8 +1,12 @@
+import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:plant_shop/constants/constants.dart';
 import 'package:plant_shop/screens/cart_screen.dart';
 import 'package:plant_shop/screens/favorite_screen.dart';
 import 'package:plant_shop/screens/home_screen.dart';
 import 'package:plant_shop/screens/profile_screen.dart';
+import 'package:plant_shop/screens/scan_screen.dart';
 
 class RootScreen extends StatefulWidget {
   const RootScreen({super.key});
@@ -62,7 +66,39 @@ class _RootScreenState extends State<RootScreen> {
           ),
         ),
       ),
-      body: ,
+      body: IndexedStack(index: bottomIndex, children: screens),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(
+            () {
+              Navigator.push(
+                context,
+                PageTransition(
+                  child: const ScanScreen(),
+                  type: PageTransitionType.bottomToTop,
+                ),
+              );
+            },
+          );
+        },
+        backgroundColor: Constants.primaryColor,
+        child: Image.asset("assets/images/code-scan-two.png", height: 30),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      bottomNavigationBar: AnimatedBottomNavigationBar(
+        onTap: (index) {
+          setState(() {
+            bottomIndex = index;
+          });
+        },
+        icons: iconList,
+        activeIndex: bottomIndex,
+        splashColor: Constants.primaryColor,
+        activeColor: Constants.primaryColor,
+        inactiveColor: Color(0xFF737373),
+        gapLocation: GapLocation.center,
+        notchSmoothness: NotchSmoothness.softEdge,
+      ),
     );
   }
 }
