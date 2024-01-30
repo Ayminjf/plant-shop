@@ -9,6 +9,16 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  int selectedIndex = 0;
+
+  List<String> plantsCategory = [
+    '| پیشنهادی |',
+    '| آپارتمانی |',
+    '| محل‌کار |',
+    '| گل باغچه‌ایی |',
+    '| گل سمی |',
+  ];
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -67,6 +77,43 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                 ),
+              ),
+            ),
+            Container(
+              height: 70,
+              width: size.width,
+              padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
+              child: ListView.builder(
+                scrollDirection: Axis.horizontal,
+                reverse: true,
+                itemCount: plantsCategory.length,
+                itemBuilder: (context, index) {
+                  return Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: InkWell(
+                      splashColor: Constants.primaryColor.withOpacity(0.2),
+                      splashFactory: InkRipple.splashFactory,
+                      onTap: () {
+                        setState(() {
+                          selectedIndex = index;
+                        });
+                      },
+                      child: Text(
+                        plantsCategory[index],
+                        style: TextStyle(
+                          fontFamily: "iranSans",
+                          fontSize: 14,
+                          fontWeight: selectedIndex == index
+                              ? FontWeight.bold
+                              : FontWeight.normal,
+                          color: selectedIndex == index
+                              ? Constants.primaryColor
+                              : Constants.greyColor,
+                        ),
+                      ),
+                    ),
+                  );
+                },
               ),
             )
           ],
