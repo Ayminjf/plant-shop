@@ -175,13 +175,13 @@ class _HomeScreenState extends State<HomeScreen> {
                           bottom: 15,
                           left: 20,
                           child: Container(
-                            padding: EdgeInsets.symmetric(horizontal: 10),
+                            padding: const EdgeInsets.symmetric(horizontal: 10),
                             decoration: const BoxDecoration(
                                 color: Colors.white,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(20))),
                             child: Text(
-                              "\$${_plantList[index].price.toString()}",
+                              "\$${_plantList[index].price.toString().persianNumber}",
                               style: TextStyle(
                                 color: Constants.primaryColor,
                                 fontSize: 16,
@@ -239,7 +239,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
             Container(
-              padding: EdgeInsets.symmetric(horizontal: 18),
+              padding: const EdgeInsets.symmetric(horizontal: 18),
               height: size.height * 0.3,
               child: ListView.builder(
                 itemCount: _plantList.length,
@@ -267,7 +267,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             const SizedBox(width: 5),
                             Text(
-                              _plantList[index].price.toString(),
+                              _plantList[index].price.toString().persianNumber,
                               style: TextStyle(
                                   fontFamily: "lalezar",
                                   color: Constants.primaryColor,
@@ -331,5 +331,17 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+}
+
+extension PersianNumberExtension on String {
+  String get persianNumber {
+    const english = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    const persian = ["۰", "۱", "۲", "۳", "۴", "۵", "۶", "۷", "۸", "۹"];
+    String text = this;
+    for (var i = 0; i < english.length; i++) {
+      text = text.replaceAll(english[i], persian[i]);
+    }
+    return text;
   }
 }
