@@ -49,16 +49,16 @@ class _RootScreenState extends State<RootScreen> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Icon(
+              Icon(
                 Icons.notifications,
-                color: Color(0xFF737373),
+                color: Constants.greyColor,
                 size: 30,
               ),
               Text(
                 appBarTitle[bottomIndex],
-                style: const TextStyle(
+                style: TextStyle(
                   fontFamily: "lalezar",
-                  color: Color(0xFF737373),
+                  color: Constants.greyColor,
                   fontSize: 25,
                 ),
               ),
@@ -95,7 +95,7 @@ class _RootScreenState extends State<RootScreen> {
         activeIndex: bottomIndex,
         splashColor: Constants.primaryColor,
         activeColor: Constants.primaryColor,
-        inactiveColor: Color(0xFF737373),
+        inactiveColor: Constants.greyColor,
         gapLocation: GapLocation.center,
         notchSmoothness: NotchSmoothness.softEdge,
       ),
