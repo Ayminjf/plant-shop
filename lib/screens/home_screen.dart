@@ -185,7 +185,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               style: TextStyle(
                                 color: Constants.primaryColor,
                                 fontSize: 16,
-                                fontFamily: "iranSans",
+                                fontFamily: "lalezar",
                               ),
                             ),
                           ),
@@ -215,6 +215,111 @@ class _HomeScreenState extends State<HomeScreen> {
                               ),
                             ],
                           ),
+                        )
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+            Container(
+              alignment: Alignment.centerRight,
+              padding: const EdgeInsets.only(
+                right: 20,
+                bottom: 15,
+                top: 20,
+              ),
+              child: const Text(
+                "گیاهان جدید",
+                style: TextStyle(
+                  fontFamily: "lalezar",
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 18),
+              height: size.height * 0.3,
+              child: ListView.builder(
+                itemCount: _plantList.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    height: 80,
+                    width: size.width,
+                    padding: const EdgeInsets.only(left: 10, top: 10),
+                    margin: const EdgeInsets.only(bottom: 10, top: 10),
+                    decoration: BoxDecoration(
+                      color: Constants.primaryColor.withOpacity(0.1),
+                      borderRadius: const BorderRadius.all(
+                        Radius.circular(10),
+                      ),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Row(
+                          children: [
+                            SizedBox(
+                              height: 20,
+                              child: Image.asset(
+                                  "assets/images/PriceUnit-green.png"),
+                            ),
+                            const SizedBox(width: 5),
+                            Text(
+                              _plantList[index].price.toString(),
+                              style: TextStyle(
+                                  fontFamily: "lalezar",
+                                  color: Constants.primaryColor,
+                                  fontSize: 20),
+                            ),
+                          ],
+                        ),
+                        Stack(
+                          clipBehavior: Clip.none,
+                          children: [
+                            Container(
+                              width: 60,
+                              height: 60,
+                              decoration: BoxDecoration(
+                                color: Constants.primaryColor.withOpacity(0.8),
+                                shape: BoxShape.circle,
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 5,
+                              right: 0,
+                              left: 0,
+                              child: SizedBox(
+                                height: 80,
+                                child: Image.asset(_plantList[index].imageURL),
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 5,
+                              right: 80,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.end,
+                                children: [
+                                  Text(
+                                    _plantList[index].category,
+                                    style: const TextStyle(
+                                      fontFamily: "byekan",
+                                      fontSize: 13,
+                                    ),
+                                  ),
+                                  Text(
+                                    _plantList[index].plantName,
+                                    style: TextStyle(
+                                      fontFamily: "byekan",
+                                      fontSize: 18,
+                                      color: Constants.greyColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            )
+                          ],
                         )
                       ],
                     ),
