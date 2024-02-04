@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plant_shop/constants/constants.dart';
 import 'package:plant_shop/models/plant_model.dart';
+import 'package:plant_shop/screens/home_screen.dart';
 
 class DetailScreen extends StatefulWidget {
   final int platnId;
@@ -69,9 +70,100 @@ class _DetailScreenState extends State<DetailScreen> {
                 ),
               ],
             ),
-          )
+          ),
+          Positioned(
+            top: 100,
+            left: 20,
+            right: 20,
+            child: Container(
+              height: size.height * 0.8,
+              width: size.width * 0.8,
+              padding: const EdgeInsets.all(20),
+              child: Stack(
+                children: [
+                  Positioned(
+                    top: 10,
+                    left: 0,
+                    child: SizedBox(
+                      height: 350,
+                      child: Image.asset(
+                        plantList[widget.platnId].imageURL,
+                      ),
+                    ),
+                  ),
+                  Positioned(
+                    top: 10,
+                    right: 0,
+                    child: SizedBox(
+                      height: 200,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          PlantDetails(
+                            title: "اندازه گیاه",
+                            plantData: plantList[widget.platnId].plantName,
+                          ),
+                          PlantDetails(
+                            title: "رطوبت‌هوا",
+                            plantData: plantList[widget.platnId]
+                                .humidity
+                                .toString()
+                                .persianNumber,
+                          ),
+                          PlantDetails(
+                            title: "دمای‌نگهداری",
+                            plantData: plantList[widget.platnId]
+                                .temperature
+                                .persianNumber,
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
         ],
       ),
+    );
+  }
+}
+
+class PlantDetails extends StatelessWidget {
+  final String title;
+  final String plantData;
+  const PlantDetails({
+    super.key,
+    required this.title,
+    required this.plantData,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Text(
+          title,
+          style: TextStyle(
+            color: Constants.greyColor,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            fontFamily: "lalezar",
+          ),
+        ),
+        Text(
+          plantData,
+          style: TextStyle(
+            color: Constants.primaryColor,
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            fontFamily: "lalezar",
+          ),
+        ),
+      ],
     );
   }
 }
