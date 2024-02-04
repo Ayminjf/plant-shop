@@ -219,6 +219,65 @@ class _DetailScreenState extends State<DetailScreen> {
           ),
         ],
       ),
+      floatingActionButton: SizedBox(
+        width: size.width * 0.9,
+        height: 50.0,
+        child: Row(
+          children: [
+            GestureDetector(
+              onTap: () {},
+              child: Container(
+                height: 50,
+                width: 50,
+                decoration: BoxDecoration(
+                  color: Constants.primaryColor.withOpacity(0.5),
+                  borderRadius: BorderRadius.circular(50),
+                  boxShadow: [
+                    BoxShadow(
+                      offset: const Offset(0.0, 1.1),
+                      blurRadius: 5,
+                      color: Constants.primaryColor.withOpacity(0.3),
+                    )
+                  ],
+                ),
+                child: const Icon(
+                  Icons.shopping_cart,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            const SizedBox(width: 20),
+            Expanded(
+              child: GestureDetector(
+                onTap: () {},
+                child: Container(
+                  decoration: BoxDecoration(
+                    color: Constants.primaryColor,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: [
+                      BoxShadow(
+                        offset: const Offset(0.0, 1.1),
+                        blurRadius: 5,
+                        color: Constants.primaryColor.withOpacity(0.3),
+                      )
+                    ],
+                  ),
+                  child: const Center(
+                    child: Text(
+                      "افزودن‌به‌سبد‌خرید",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontFamily: "lalezar",
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 }
