@@ -123,24 +123,25 @@ class _HomeScreenState extends State<HomeScreen> {
                 },
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  PageTransition(
-                    child: const DetailScreen(),
-                    type: PageTransitionType.topToBottom,
-                  ),
-                );
-              },
-              child: SizedBox(
-                height: size.height * 0.3,
-                child: ListView.builder(
-                  reverse: true,
-                  scrollDirection: Axis.horizontal,
-                  itemCount: _plantList.length,
-                  itemBuilder: (context, index) {
-                    return Container(
+            SizedBox(
+              height: size.height * 0.3,
+              child: ListView.builder(
+                reverse: true,
+                scrollDirection: Axis.horizontal,
+                itemCount: _plantList.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                          child:
+                              DetailScreen(platnId: _plantList[index].plantId),
+                          type: PageTransitionType.topToBottom,
+                        ),
+                      );
+                    },
+                    child: Container(
                       width: 200,
                       margin: const EdgeInsets.symmetric(horizontal: 18),
                       decoration: BoxDecoration(
@@ -232,9 +233,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           )
                         ],
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
             ),
             Container(
@@ -253,23 +254,24 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            GestureDetector(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  PageTransition(
-                    child: const DetailScreen(),
-                    type: PageTransitionType.topToBottom,
-                  ),
-                );
-              },
-              child: Container(
-                padding: const EdgeInsets.symmetric(horizontal: 18),
-                height: size.height * 0.3,
-                child: ListView.builder(
-                  itemCount: _plantList.length,
-                  itemBuilder: (context, index) {
-                    return Container(
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 18),
+              height: size.height * 0.3,
+              child: ListView.builder(
+                itemCount: _plantList.length,
+                itemBuilder: (context, index) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        PageTransition(
+                          child:
+                              DetailScreen(platnId: _plantList[index].plantId),
+                          type: PageTransitionType.topToBottom,
+                        ),
+                      );
+                    },
+                    child: Container(
                       height: 80,
                       width: size.width,
                       padding: const EdgeInsets.only(left: 10, top: 10),
@@ -353,9 +355,9 @@ class _HomeScreenState extends State<HomeScreen> {
                           )
                         ],
                       ),
-                    );
-                  },
-                ),
+                    ),
+                  );
+                },
               ),
             ),
           ],
