@@ -24,9 +24,9 @@ class _DetailScreenState extends State<DetailScreen> {
       body: Stack(
         children: [
           Positioned(
-            left: 20,
-            top: 50,
-            right: 20,
+            top: 50.0,
+            left: 20.0,
+            right: 20.0,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -102,7 +102,7 @@ class _DetailScreenState extends State<DetailScreen> {
                         children: [
                           PlantDetails(
                             title: "اندازه گیاه",
-                            plantData: plantList[widget.platnId].plantName,
+                            plantData: plantList[widget.platnId].size,
                           ),
                           PlantDetails(
                             title: "رطوبت‌هوا",
@@ -121,6 +121,98 @@ class _DetailScreenState extends State<DetailScreen> {
                       ),
                     ),
                   ),
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            left: 0,
+            right: 0,
+            child: Container(
+              padding:
+                  const EdgeInsets.only(top: 80.0, left: 30.0, right: 30.0),
+              height: size.height * 0.5,
+              width: size.width,
+              decoration: BoxDecoration(
+                color: Constants.primaryColor.withOpacity(0.5),
+                borderRadius: const BorderRadius.only(
+                  topRight: Radius.circular(30),
+                  topLeft: Radius.circular(30),
+                ),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  Text(
+                    plantList[widget.platnId].plantName,
+                    style: TextStyle(
+                      color: Constants.primaryColor,
+                      fontFamily: "lalezar",
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        children: [
+                          Icon(
+                            Icons.star,
+                            size: 30,
+                            color: Constants.primaryColor,
+                          ),
+                          Text(
+                            plantList[widget.platnId]
+                                .rating
+                                .toString()
+                                .persianNumber,
+                            style: TextStyle(
+                              fontSize: 23,
+                              // fontWeight: FontWeight.bold,
+                              color: Constants.primaryColor,
+                              fontFamily: "lalezar",
+                            ),
+                          ),
+                        ],
+                      ),
+                      Row(
+                        children: [
+                          SizedBox(
+                            height: 20,
+                            child: Image.asset(
+                                "assets/images/PriceUnit-green.png"),
+                          ),
+                          SizedBox(width: 10),
+                          Text(
+                            plantList[widget.platnId]
+                                .price
+                                .toString()
+                                .persianNumber,
+                            style: TextStyle(
+                              fontFamily: "lalezar",
+                              color: Constants.blackColor.withOpacity(0.6),
+                              fontSize: 30,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 15),
+                  Text(
+                    plantList[widget.platnId].decription,
+                    textAlign: TextAlign.justify,
+                    textDirection: TextDirection.rtl,
+                    style: TextStyle(
+                      fontFamily: "iranSans",
+                      color: Constants.blackColor.withOpacity(0.6),
+                      fontSize: 15,
+                      height: 1.7,
+                    ),
+                  )
                 ],
               ),
             ),
