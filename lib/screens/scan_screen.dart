@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_shop/constants/constants.dart';
+import 'package:mobile_scanner/mobile_scanner.dart';
 
 class ScanScreen extends StatefulWidget {
   const ScanScreen({super.key});
@@ -55,6 +56,38 @@ class _ScanScreenState extends State<ScanScreen> {
                 ),
               ],
             ),
+          ),
+          Positioned(
+            top: 100.0,
+            left: 20.0,
+            right: 20.0,
+            child: SizedBox(
+                width: size.width * 0.8,
+                height: size.height * 0.8,
+                child: Center(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        child: Image.asset(
+                          'assets/images/code-scan.png',
+                          height: 100.0,
+                        ),
+                      ),
+                      const SizedBox(height: 20.0),
+                      Text(
+                        'برای اسکن گیاه، کلیک کنید',
+                        style: TextStyle(
+                          color: Constants.primaryColor.withOpacity(0.8),
+                          fontFamily: 'Lalezar',
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ],
+                  ),
+                )),
           ),
         ],
       ),
