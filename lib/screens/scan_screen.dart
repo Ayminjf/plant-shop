@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:mobile_scanner/mobile_scanner.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:plant_shop/constants/constants.dart';
 import 'package:plant_shop/screens/camera_screen.dart';
