@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:plant_shop/models/plant_model.dart';
 
 class FavoriteScreen extends StatefulWidget {
-  const FavoriteScreen({super.key});
+  final List<Plant> favoritedPlants;
+  const FavoriteScreen({
+    super.key,
+    required this.favoritedPlants,
+  });
 
   @override
   State<FavoriteScreen> createState() => _FavoriteScreenState();
