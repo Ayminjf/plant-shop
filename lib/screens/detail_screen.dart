@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plant_shop/constants/constants.dart';
 import 'package:plant_shop/models/plant_model.dart';
-import 'package:plant_shop/screens/home_screen.dart';
+import 'package:plant_shop/widgets/persian_number.dart';
 
 class DetailScreen extends StatefulWidget {
   final int platnId;
@@ -185,7 +185,7 @@ class _DetailScreenState extends State<DetailScreen> {
                             child: Image.asset(
                                 "assets/images/PriceUnit-green.png"),
                           ),
-                          SizedBox(width: 10),
+                          const SizedBox(width: 10),
                           Text(
                             plantList[widget.platnId]
                                 .price
@@ -201,7 +201,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   Text(
                     plantList[widget.platnId].decription,
                     textAlign: TextAlign.justify,
