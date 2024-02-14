@@ -2,6 +2,7 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:flutter/material.dart';
 import 'package:page_transition/page_transition.dart';
 import 'package:plant_shop/constants/constants.dart';
+import 'package:plant_shop/models/plant_model.dart';
 import 'package:plant_shop/screens/cart_screen.dart';
 import 'package:plant_shop/screens/favorite_screen.dart';
 import 'package:plant_shop/screens/home_screen.dart';
@@ -17,12 +18,19 @@ class RootScreen extends StatefulWidget {
 
 class _RootScreenState extends State<RootScreen> {
   int bottomIndex = 0;
-  List<Widget> screens = const [
-    HomeScreen(),
-    FavoriteScreen(),
-    CartScreen(),
-    ProfileScreen(),
-  ];
+  List<Plant> favorites = [];
+  List<Plant> mycart = [];
+
+  List<Widget> screens() {
+    return [
+      const HomeScreen(),
+      FavoriteScreen(
+        favoritedPlants: favorites,
+      ),
+      CartScreen(addedToCartPlants: mycart),
+      const ProfileScreen(),
+    ];
+  }
 
   List<IconData> iconList = [
     Icons.home,
@@ -66,7 +74,7 @@ class _RootScreenState extends State<RootScreen> {
           ),
         ),
       ),
-      body: IndexedStack(index: bottomIndex, children: screens),
+      body: IndexedStack(index: bottomIndex, children: screens()),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(
@@ -86,11 +94,6 @@ class _RootScreenState extends State<RootScreen> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: AnimatedBottomNavigationBar(
-        onTap: (index) {
-          setState(() {
-            bottomIndex = index;
-          });
-        },
         icons: iconList,
         activeIndex: bottomIndex,
         splashColor: Constants.primaryColor,
@@ -98,6 +101,16 @@ class _RootScreenState extends State<RootScreen> {
         inactiveColor: Constants.greyColor,
         gapLocation: GapLocation.center,
         notchSmoothness: NotchSmoothness.softEdge,
+        onTap: (index) {
+          setState(() {
+            bottomIndex = index;
+            List<Plant> favoritedPlants = Plant.getFavoritedPlants();
+            List<Plant> addToCartPlants = Plant.addedToCartPlants();
+
+            favorites = favoritedPlants.toSet().toList();
+            mycart = addToCartPlants.toSet().toList();
+          });
+        },
       ),
     );
   }
