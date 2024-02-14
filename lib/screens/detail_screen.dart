@@ -15,6 +15,10 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
+  bool toggleIsSelected(bool isSelected) {
+    return !isSelected;
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -262,13 +266,23 @@ class _DetailScreenState extends State<DetailScreen> {
                       )
                     ],
                   ),
-                  child: const Center(
-                    child: Text(
-                      "افزودن‌به‌سبد‌خرید",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontFamily: "lalezar",
+                  child: InkWell(
+                    onTap: () {
+                      setState(() {
+                        bool isSelected = toggleIsSelected(
+                          plantList[widget.platnId].isSelected,
+                        );
+                        plantList[widget.platnId].isSelected = isSelected;
+                      });
+                    },
+                    child: const Center(
+                      child: Text(
+                        "افزودن‌به‌سبد‌خرید",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontFamily: "lalezar",
+                        ),
                       ),
                     ),
                   ),
