@@ -15,6 +15,14 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
+  Color shoppingCartColor = Colors.white;
+
+  Color shoppingCartColorChange(bool isSelected) {
+    return isSelected == true
+        ? shoppingCartColor = Colors.yellow
+        : shoppingCartColor = Colors.white;
+  }
+
   bool toggleIsSelected(bool isSelected) {
     return !isSelected;
   }
@@ -229,7 +237,9 @@ class _DetailScreenState extends State<DetailScreen> {
         child: Row(
           children: [
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                setState(() {});
+              },
               child: Container(
                 height: 50,
                 width: 50,
@@ -244,16 +254,27 @@ class _DetailScreenState extends State<DetailScreen> {
                     )
                   ],
                 ),
-                child: const Icon(
+                child: Icon(
                   Icons.shopping_cart,
-                  color: Colors.white,
+                  color: shoppingCartColorChange(
+                    plantList[widget.platnId].isSelected,
+                  ),
                 ),
               ),
             ),
             const SizedBox(width: 20),
             Expanded(
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  setState(() {
+                    bool isSelected = toggleIsSelected(
+                      plantList[widget.platnId].isSelected,
+                    );
+                    plantList[widget.platnId].isSelected = isSelected;
+                    shoppingCartColorChange(
+                        plantList[widget.platnId].isSelected);
+                  });
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     color: Constants.primaryColor,
@@ -266,23 +287,13 @@ class _DetailScreenState extends State<DetailScreen> {
                       )
                     ],
                   ),
-                  child: InkWell(
-                    onTap: () {
-                      setState(() {
-                        bool isSelected = toggleIsSelected(
-                          plantList[widget.platnId].isSelected,
-                        );
-                        plantList[widget.platnId].isSelected = isSelected;
-                      });
-                    },
-                    child: const Center(
-                      child: Text(
-                        "افزودن‌به‌سبد‌خرید",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontFamily: "lalezar",
-                        ),
+                  child: const Center(
+                    child: Text(
+                      "افزودن‌به‌سبد‌خرید",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontFamily: "lalezar",
                       ),
                     ),
                   ),
