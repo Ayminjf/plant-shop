@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:plant_shop/constants/constants.dart';
 import 'package:plant_shop/models/plant_model.dart';
-import 'package:plant_shop/screens/home_screen.dart';
+import 'package:plant_shop/widgets/persian_number.dart';
 
 class DetailScreen extends StatefulWidget {
   final int platnId;
@@ -15,6 +15,18 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
+  Color shoppingCartColor = Colors.white;
+
+  Color shoppingCartColorChange(bool isSelected) {
+    return isSelected == true
+        ? shoppingCartColor = Colors.yellow
+        : shoppingCartColor = Colors.white;
+  }
+
+  bool toggleIsSelected(bool isSelected) {
+    return !isSelected;
+  }
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -185,7 +197,7 @@ class _DetailScreenState extends State<DetailScreen> {
                             child: Image.asset(
                                 "assets/images/PriceUnit-green.png"),
                           ),
-                          SizedBox(width: 10),
+                          const SizedBox(width: 10),
                           Text(
                             plantList[widget.platnId]
                                 .price
@@ -201,7 +213,7 @@ class _DetailScreenState extends State<DetailScreen> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 15),
+                  const SizedBox(height: 15),
                   Text(
                     plantList[widget.platnId].decription,
                     textAlign: TextAlign.justify,
@@ -225,7 +237,9 @@ class _DetailScreenState extends State<DetailScreen> {
         child: Row(
           children: [
             GestureDetector(
-              onTap: () {},
+              onTap: () {
+                setState(() {});
+              },
               child: Container(
                 height: 50,
                 width: 50,
@@ -240,16 +254,27 @@ class _DetailScreenState extends State<DetailScreen> {
                     )
                   ],
                 ),
-                child: const Icon(
+                child: Icon(
                   Icons.shopping_cart,
-                  color: Colors.white,
+                  color: shoppingCartColorChange(
+                    plantList[widget.platnId].isSelected,
+                  ),
                 ),
               ),
             ),
             const SizedBox(width: 20),
             Expanded(
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  setState(() {
+                    bool isSelected = toggleIsSelected(
+                      plantList[widget.platnId].isSelected,
+                    );
+                    plantList[widget.platnId].isSelected = isSelected;
+                    shoppingCartColorChange(
+                        plantList[widget.platnId].isSelected);
+                  });
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     color: Constants.primaryColor,
