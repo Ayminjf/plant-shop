@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:plant_shop/constants/constants.dart';
+import 'package:plant_shop/widgets/profile_widget.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -14,7 +15,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
       body: Container(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         height: size.height,
         width: size.width,
         child: Column(
@@ -60,6 +61,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
               style: TextStyle(
                 color: Constants.greyColor.withOpacity(0.5),
                 fontSize: 15,
+              ),
+            ),
+            const SizedBox(height: 30),
+            SizedBox(
+              height: size.height * 0.4,
+              width: size.width,
+              child: const Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  BuildOptions(icon: Icons.person, title: "پروفایل من"),
+                  BuildOptions(icon: Icons.settings, title: "تنظیمات"),
+                  BuildOptions(icon: Icons.notifications, title: "اطلاع رسانی"),
+                  BuildOptions(icon: Icons.share, title: "شبکه های اجتماعی"),
+                  BuildOptions(icon: Icons.logout, title: "خروج"),
+                ],
               ),
             )
           ],
