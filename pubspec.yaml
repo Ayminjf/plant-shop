@@ -17,8 +17,14 @@ dependencies:
   mobile_scanner: ^2.1.0
 
 dev_dependencies:
+  # flutter_launcher_icons: ^0.13.1
   flutter_test:
-    sdk: flutter
+    sdk: flutter  
+
+# flutter_launcher_icons:
+#   android: true
+#   ios: true
+#   image_path: "assets/images/launcher_icon/plant_shop_icon.png"
 
 flutter:
   uses-material-design: true
